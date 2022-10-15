@@ -23,6 +23,9 @@ defmodule CoinMasterWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import CoinMasterWeb.ConnCase
+      import CoinMaster.Facebook.ProfileFixtures
+      import CoinMaster.Facebook.EventFixtures
+      import CoinMaster.Facebook.CoinsFixtures
 
       alias CoinMasterWeb.Router.Helpers, as: Routes
 

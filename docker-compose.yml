@@ -3,7 +3,9 @@ version: "3.4"
 services:
     backend:
         container_name: coin_master_backend
-        build: .
+        build:
+            context: .
+            dockerfile: ./Dockerfile.dev
         stdin_open: true
         volumes:
             - .:/home/elixir/backend
@@ -11,4 +13,4 @@ services:
         ports:
             - "4000:4000"
         env_file:
-            - .env
+            - .env.dev

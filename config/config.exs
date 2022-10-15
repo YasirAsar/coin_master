@@ -34,12 +34,19 @@ config :phoenix, :json_library, Jason
 
 config :coin_master,
   facebook_chat_bot: %{
-    base_url: "https://graph.facebook.com",
-    message_url: "me/messages",
-    api_version: "v14.0",
-    page_access_token: System.get_env("FACEBOOK_PAGE_ACCESS_TOKEN"),
-    webhook_verify_token: System.get_env("FACEBOOK_WEBHOOK_VERIFY_TOKEN")
-  }
+    base_url: "https://graph.facebook.com/v15.0",
+    message_url: "/me/messages",
+    message_profile: "/me/messenger_profile"
+  },
+  coin_gecko: %{
+    base_url: "https://api.coingecko.com/api/v3"
+  },
+  facebook_message_delay: 1000
+
+config :coin_master,
+  facebook_client: CoinMaster.Facebook.FacebookClient,
+  coin_gecko_client: CoinMaster.CoinGecko.CoinGeckoClient,
+  http_client: CoinMaster.HTTPClient
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

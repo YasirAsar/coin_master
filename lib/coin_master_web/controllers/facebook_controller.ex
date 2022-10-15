@@ -1,10 +1,10 @@
 defmodule CoinMasterWeb.FacebookController do
   use CoinMasterWeb, :controller
 
-  alias CoinMaster.Bot
+  alias CoinMaster.Facebook
 
   def verify_webhook_token(conn, params) do
-    if Bot.verify_webhook(params) do
+    if Facebook.verify_webhook(params) do
       conn
       |> put_resp_content_type("application/json")
       |> resp(200, params["hub.challenge"])
@@ -16,8 +16,8 @@ defmodule CoinMasterWeb.FacebookController do
     end
   end
 
-  def handle_event(conn, event_data) do
-    CoinMaster.handle_event(event_data)
+  def handle_event(conn, event) do
+    Facebook.handle_event(event)
 
     conn
     |> put_resp_content_type("application/json")

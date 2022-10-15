@@ -12,3 +12,10 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :coin_master, facebook_message_delay: 0
+
+config :coin_master,
+  facebook_client: CoinMaster.Facebook.FacebookClientMock,
+  coin_gecko_client: CoinMaster.CoinGecko.CoinGeckoClientMock,
+  http_client: CoinMaster.HTTPClientMock

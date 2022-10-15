@@ -8,6 +8,7 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		"streetsidesoftware.code-spell-checker",
 		"eamodio.gitlens",
 		"hookyqr.beautify",
 		"jakebecker.elixir-ls",

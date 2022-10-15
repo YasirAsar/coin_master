@@ -33,11 +33,12 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
+  host = System.get_env("PHX_HOST") || "localhost"
   port = String.to_integer(System.get_env("PORT") || "4000")
+  scheme = System.get_env("SCHEME") || "http"
 
   config :coin_master, CoinMasterWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
+    url: [host: host, port: port, scheme: scheme],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -48,3 +49,9 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 end
+
+config :coin_master,
+  facebook_secrets: %{
+    page_access_token: System.fetch_env!("FACEBOOK_PAGE_ACCESS_TOKEN"),
+    webhook_verify_token: System.fetch_env!("FACEBOOK_WEBHOOK_VERIFY_TOKEN")
+  }
